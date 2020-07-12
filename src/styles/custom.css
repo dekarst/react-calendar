@@ -1,0 +1,235 @@
+$global-color: #616161;
+$header-color: #ffffff;
+$background-color-body: #ffffff;
+$background-color-light-4: #bbdefb;
+
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600;700&display=swap");
+
+body {
+  font-size: 1rem;
+}
+
+a,
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
+.btn.btn-default {
+  padding: 0.125rem 1rem;
+  min-width: 5rem;
+  background-color: #9b2c2c;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.calendar-wrapper {
+  position: relative;
+  width: 26rem;
+  max-width: 100%;
+  padding: 1.5rem 0.75rem;
+  margin: 2.5rem auto;
+  box-shadow: 0 0 1.5rem 0.25rem rgba(0, 0, 0, 0.25);
+  font-family: 'Dosis', sans-serif;
+}
+
+.calendar-wrapper .button-container .btn {
+  margin: 0 0.5rem;
+}
+
+.calendar-wrapper .calendar-header .title-header {
+  padding: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.calendar-wrapper .event-header .title-header span {
+  margin: 0 auto;
+}
+
+.calendar-wrapper .event-header + .title-header,
+.calendar-wrapper .event-header ~ .weekdays-header {
+  display: none;
+}
+
+.calendar-wrapper .calendar-header .title-header .switch-month {
+  height: 2.75rem;
+  width: 2rem;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  background-color: #4a5568;
+}
+
+.calendar-wrapper .calendar-header .title-header .header-text .month-label {
+  flex: 3;
+}
+
+.calendar-wrapper .day-events {
+  position: relative;
+  width: 100%;
+  height: 70%;
+  background-color: $background-color-body;
+  font-size: 1.2em;
+}
+
+.calendar-wrapper .day-events .event-container {
+  width: 100%;
+  text-align: center;
+  display: flex;
+}
+
+.calendar-wrapper .day-events .event-container:hover {
+  cursor: pointer;
+}
+
+.calendar-wrapper .day-events .event-container .event-attribute .animated-title {
+  width: 70%;
+
+  .event-title {
+  }
+}
+
+.calendar-wrapper .day-events .event-container .event-attribute .animated-time {
+  width: 30%;
+
+  .event-time {
+  }
+}
+
+.calendar-wrapper .day-events .event-container .event-attribute {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.view-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row.week {
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.day,
+.weekday {
+  width: 14.285%;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.day .day-number {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.day.today .day-number {
+  background-color: $background-color-light-3;
+  color: $background-color-dark;
+  border: 1px solid $background-color-light-3;
+}
+
+.day.has-events {
+  position: relative;
+  color: #fff;
+}
+
+.day.has-events::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: #276749;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+}
+
+.day.has-events .day-number {
+  color: $background-color-dark;
+  font-weight: bold;
+}
+
+.day.different-month {
+  opacity: 0.5;
+}
+
+.title-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.add-event-form {
+  position: absolute;
+  background-color: #fff;
+  padding: 0.75rem;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.add-event-form input:not([type="submit"]),
+.add-event-form textarea {
+  display: block;
+  width: 100%;
+  height: 2rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.add-event-form label {
+  display: block;
+  text-align: left;
+}
+
+.add-event-form label span {
+  font-size: 0.9rem;
+  display: block;
+  font-weight: 700;
+}
+
+.add-event-form .btn.submit {
+  background-color: #276749;
+  color: #fff;
+  width: 10rem;
+  padding: 0.5rem 0;
+}
+
+.event-container {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.event-container:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+.event-container .event-time {
+  width: 5rem;
+}
+
+.event-container .event-info {
+  width: calc(100% - 5rem);
+  text-align: left;
+}
