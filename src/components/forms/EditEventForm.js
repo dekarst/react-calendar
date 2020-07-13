@@ -53,6 +53,9 @@ class EditEventForm extends React.Component {
         const eventStorage = new Storage();
 
         eventStorage.setEvents([...eventStorage.getEvents(), currentEventData]);
+
+        alert(`New Event data has been saved for: ${ currentEventData.title }`);
+        this.props.closeForm();
     }
 
     render() {

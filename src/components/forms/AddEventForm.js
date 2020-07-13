@@ -58,6 +58,9 @@ class AddEventForm extends React.Component {
         const eventStorage = new Storage();
 
         eventStorage.setEvents([...eventStorage.getEvents(), currentEventData]);
+
+        alert(`You have successfully created a new Event: ${ currentEventData.title }`);
+        this.props.closeForm();
     }
 
     render() {
