@@ -1,16 +1,17 @@
 import * as React from "react";
 import moment from "moment";
-import Event from "../../Event";
+import Event from "../Event";
 
 class Events extends React.Component {
     render() {
         const currentSelectedDay = this.props.selectedDay;
         const events = this.props.selectedEvents;
         const removeEvent = this.props.removeEvent;
+        const editEvent = this.props.editEvent;
 
         const eventsRendered = events.map((event, i) => {
             return (
-                <Event event={ event } onClick={ () => removeEvent(i) }/>
+                <Event event={ event } onRemove={ () => removeEvent(i) } onEdit={ () => editEvent(i) }/>
             );
         });
 
