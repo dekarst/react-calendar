@@ -17,31 +17,48 @@ input[type="submit"] {
 
 .btn.btn-default {
   padding: 0.125rem 1rem;
-  min-width: 5rem;
+  min-width: 4.5rem;
   background-color: #9b2c2c;
+  border-radius: 4px;
   color: #fff;
   font-weight: 700;
   font-size: 1rem;
 }
 
+.btn.action-btn {
+  min-width: 2rem;
+}
+
+.btn.action-btn.edit {
+  background-color: #4a5568;
+  margin-right: 0.5rem;
+}
+
 .calendar-wrapper {
   position: relative;
-  width: 26rem;
+  width: 46rem;
   max-width: 100%;
-  padding: 1.5rem 0.75rem;
+  padding: 2rem 1.5rem;
   margin: 2.5rem auto;
   box-shadow: 0 0 1.5rem 0.25rem rgba(0, 0, 0, 0.25);
   font-family: 'Dosis', sans-serif;
 }
 
-.calendar-wrapper .button-container .btn {
+.button-container .btn {
   margin: 0 0.5rem;
 }
 
+.button-container .btn.to-calendar {
+  margin-top: 1.5rem;
+}
+
 .calendar-wrapper .calendar-header .title-header {
-  padding: 0.75rem;
+  margin: 1rem 0 0;
   font-size: 1.25rem;
   font-weight: 500;
+  min-height: 4rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
 }
 
 .calendar-wrapper .event-header .title-header span {
@@ -53,65 +70,47 @@ input[type="submit"] {
   display: none;
 }
 
-.calendar-wrapper .calendar-header .title-header .switch-month {
-  height: 2.75rem;
+.calendar-wrapper .calendar-header .title-header .btn.arrow {
+  height: 4rem;
   width: 2rem;
   color: #fff;
+  border-radius: 4px;
   font-size: 1.25rem;
   font-weight: 700;
   background-color: #4a5568;
 }
 
-.calendar-wrapper .calendar-header .title-header .header-text .month-label {
-  flex: 3;
-}
 
 .calendar-wrapper .day-events {
   position: relative;
   width: 100%;
-  height: 70%;
-  background-color: $background-color-body;
   font-size: 1.2em;
 }
 
-.calendar-wrapper .day-events .event-container {
-  width: 100%;
-  text-align: center;
+.calendar-header .header-button-group {
   display: flex;
+  flex-wrap: wrap;
 }
 
-.calendar-wrapper .day-events .event-container:hover {
-  cursor: pointer;
-}
-
-.calendar-wrapper .day-events .event-container .event-attribute .animated-title {
-  width: 70%;
-
-  .event-title {
-  }
-}
-
-.calendar-wrapper .day-events .event-container .event-attribute .animated-time {
-  width: 30%;
-
-  .event-time {
-  }
-}
-
-.calendar-wrapper .day-events .event-container .event-attribute {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  box-sizing: border-box;
-  padding: 5px;
-}
-
-.view-buttons {
+.calendar-header .view-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.calendar-header .btn.add-event {
+  margin-left: auto;
+  background-color: #2c7a7b;
+}
+
+.header-text .today-label {
+  background-color: #2c7a7b;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.125rem 0.75rem;
+  margin: 0 0.5rem;
+  border-radius: 4px;
 }
 
 .row {
@@ -127,11 +126,13 @@ input[type="submit"] {
 .day,
 .weekday {
   width: 14.285%;
-  height: 2.5rem;
+  height: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  font-weight: 600;
+  font-size: 1.125rem;
 }
 
 .day .day-number {
@@ -139,12 +140,7 @@ input[type="submit"] {
   font-weight: 500;
 }
 
-.day.today .day-number {
-  background-color: $background-color-light-3;
-  color: $background-color-dark;
-  border: 1px solid $background-color-light-3;
-}
-
+.day.today,
 .day.has-events {
   position: relative;
   color: #fff;
@@ -157,7 +153,7 @@ input[type="submit"] {
   width: 1.75rem;
   height: 1.75rem;
   border-radius: 50%;
-  background-color: #276749;
+  background-color: #2c7a7b;
   left: 50%;
   top: 50%;
   z-index: -1;
@@ -165,8 +161,21 @@ input[type="submit"] {
 }
 
 .day.has-events .day-number {
-  color: $background-color-dark;
   font-weight: bold;
+}
+
+.day.today::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background-color: #9b2c2c;
+  left: 50%;
+  top: 50%;
+  z-index: -2;
+  transform: translate(-50%, -50%);
 }
 
 .day.different-month {
@@ -179,7 +188,7 @@ input[type="submit"] {
   justify-content: space-between;
 }
 
-.add-event-form {
+.form-wrapper {
   position: absolute;
   background-color: #fff;
   padding: 0.75rem;
@@ -187,37 +196,67 @@ input[type="submit"] {
   left: 0;
   width: 100%;
   height: 100%;
+  min-height: 37.5rem;
+  box-shadow: 0 0 1.5rem 0.25rem rgba(0, 0, 0, 0.25);
 }
 
-.add-event-form input:not([type="submit"]),
-.add-event-form textarea {
+.form-wrapper .form-fields {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-wrapper input:not([type="submit"]),
+.form-wrapper textarea,
+.form-wrapper select {
   display: block;
-  width: 100%;
   height: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
 }
 
-.add-event-form label {
+.form-wrapper input:not([type="submit"]),
+.form-wrapper textarea {
+  width: 100%;
+}
+
+.form-wrapper textarea {
+  height: 5rem;
+}
+
+.form-wrapper select {
+  width: 12rem;
+}
+
+.form-wrapper label {
+  width: 100%;
   display: block;
   text-align: left;
 }
 
-.add-event-form label span {
-  font-size: 0.9rem;
+.form-wrapper label span {
+  font-size: 1rem;
   display: block;
   font-weight: 700;
+  padding-bottom: 0.5rem;
 }
 
-.add-event-form .btn.submit {
+.form-wrapper .btn.submit {
   background-color: #276749;
   color: #fff;
   width: 10rem;
   padding: 0.5rem 0;
+  margin-left: auto;
+}
+
+.form-header .form-title {
+  width: calc(100% - 5rem);
 }
 
 .event-container {
-  padding-bottom: 1rem;
+  width: 100%;
+  display: flex;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
@@ -227,9 +266,73 @@ input[type="submit"] {
 
 .event-container .event-time {
   width: 5rem;
+  background-color: #276749;
+  color: #fff;
+  padding: 0.25rem;
 }
 
 .event-container .event-info {
   width: calc(100% - 5rem);
   text-align: left;
+  padding: 0 0 0.5rem 0.5rem;
+}
+
+.event-container .event-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.event-container .event-desc {
+  line-height: 1.5;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.event-actions {
+  display: flex;
+  align-items: center;
+}
+
+.day-view-container {
+  overflow: auto;
+  overflow-y: scroll;
+  height: 24rem;
+  border: solid rgba(0, 0, 0, 0.2);
+  border-width: 1px 0;
+}
+
+.day-view-day-container {
+  display: flex;
+  flex-wrap: wrap;
+  border: solid rgba(0, 0, 0, 0.2);
+  border-width: 1px 0;
+  min-height: 4rem;
+}
+
+.day-view-day-container span.events {
+  display: block;
+  width: calc(100% - 5rem);
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0 1rem;
+}
+
+.day-view-day-container span.events span.event {
+  display: flex;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  color: #fff;
+  justify-content: space-between;
+}
+
+.day-view-day-container span.hour {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  background-color: #276749;
+  color: #fff;
+  font-weight: 600;
 }
