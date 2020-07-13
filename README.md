@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Development Node: `v.10.19.0`
+
+In order to build app assets you should be using a dev node version indicated above. 
+
 ## Available Scripts
 
 In the project directory, you can run:
